@@ -51,7 +51,7 @@ with lock:
         # prefix envprefix
         # add code here
         clist = list(range(64))
-        clist = ['cenv' + x for x in clist]
+        clist = ['cenv' + str(r) x in clist]
         
     else:
         # load hickle file
@@ -60,12 +60,15 @@ with lock:
         if pmode == WRITE_MODE:
             # append env to the clist
             # add code here
-            clist.append(envprefix + nenvs)
+            clist.append(env)
+            
         else:
             # get and remove env from clist
             # add code here
+            env = clist[0]
+            clist.pop(0)
+            
             # return env name
-            clist.remove(envprefix + nenvs)
             print(env)
             
 # save hickle file
