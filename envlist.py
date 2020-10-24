@@ -51,7 +51,7 @@ with lock:
         # prefix envprefix
         # add code here
         clist = list(range(64))
-        clist = ['cenv' + str(r) x in clist]
+        clist = ['cenv' + str(x) for x in clist]
         
     else:
         # load hickle file
