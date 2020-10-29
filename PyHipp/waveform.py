@@ -49,16 +49,11 @@ class Waveform(DPT.DPObject):
         
         # check on the mountainsort template data and create a DPT object accordingly
         # Example:
-            
-        pwd = os.path.normpath(os.getcwd());
-        # 'channelxxx, xxx is the number of the channel'
-        self.channel_filename = [os.path.basename(pwd)]  
-        template_filename = os.path.join(DPT.levels.resolve_level('day', self.channel_filename[0]),'mountains', self.channel_filename[0], 'output', 'templates.hkl')
+
+        #Save waveforms in object to list
+        self.data = [np.squeeze(templates)]            
 
         templates = hkl.load(template_filename)
-    
-        #Save waveforms in object to list
-        self.data = [np.squeeze(templates)]
 
         if not data:
             # create object if data is not empty
@@ -67,6 +62,10 @@ class Waveform(DPT.DPObject):
             # create empty object if data is empty
             DPT.DPObject.create(self, dirs=[], *args, **kwargs)            
         
+        pwd = os.path.normpath(os.getcwd());
+        # 'channelxxx, xxx is the number of the channel'
+        self.channel_filename = [os.path.basename(pwd)]  
+        template_filename = os.path.join(DPT.levels.resolve_level('day', self.channel_filename[0]),'mountains', self.channel_filename[0], 'output', 'templates.hkl')        
 
         
     def append(self, wf):
