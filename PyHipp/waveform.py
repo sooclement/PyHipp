@@ -62,7 +62,7 @@ class Waveform(DPT.DPObject):
         template_filename = os.path.join(DPT.levels.resolve_level('day', self.channel_filename[0]),'mountains', self.channel_filename[0], 'output', 'templates.hkl')
 
         templates = hkl.load(template_filename)
-        
+    
         #Save waveforms in object to list
         self.data = [np.squeeze(templates)]
         
