@@ -60,7 +60,7 @@ class Waveform(DPT.DPObject):
         #Save waveforms in object to list
         self.data = [np.squeeze(templates)]
 
-        if <data-is-not-empty>:
+        if not data:
             # create object if data is not empty
             DPT.DPObject.create(self, *args, **kwargs)
         else:
