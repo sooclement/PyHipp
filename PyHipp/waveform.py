@@ -49,13 +49,7 @@ class Waveform(DPT.DPObject):
         
         # check on the mountainsort template data and create a DPT object accordingly
         # Example:
-        if <data-is-not-empty>:
-            # create object if data is not empty
-            DPT.DPObject.create(self, *args, **kwargs)
-        else:
-            # create empty object if data is empty
-            DPT.DPObject.create(self, dirs=[], *args, **kwargs)            
-        
+            
         pwd = os.path.normpath(os.getcwd());
         # 'channelxxx, xxx is the number of the channel'
         self.channel_filename = [os.path.basename(pwd)]  
@@ -65,6 +59,15 @@ class Waveform(DPT.DPObject):
     
         #Save waveforms in object to list
         self.data = [np.squeeze(templates)]
+
+        if <data-is-not-empty>:
+            # create object if data is not empty
+            DPT.DPObject.create(self, *args, **kwargs)
+        else:
+            # create empty object if data is empty
+            DPT.DPObject.create(self, dirs=[], *args, **kwargs)            
+        
+
         
     def append(self, wf):
         # this function will be called by processDirs to append the values of certain fields
