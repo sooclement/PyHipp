@@ -51,6 +51,15 @@ class Waveform(DPT.DPObject):
         # Example:
 
         #Save waveforms in object to list
+        pwd = os.path.normpath(os.getcwd());
+        # 'channelxxx, xxx is the number of the channel'
+        self.channel_filename = [os.path.basename(pwd)]  
+        template_filename = os.path.join(DPT.levels.resolve_level('day', self.channel_filename[0]),'mountains', self.channel_filename[0], 'output', 'templates.hkl')
+        
+        templates = hkl.load(template_filename)
+        
+        self.data = [np.squeeze(templates)]
+        
         if not data:
             # create object if data is not empty
             DPT.DPObject.create(self, *args, **kwargs)
@@ -58,15 +67,6 @@ class Waveform(DPT.DPObject):
             # create empty object if data is empty
             DPT.DPObject.create(self, dirs=[], *args, **kwargs)            
         
-        templates = hkl.load(template_filename)
-        
-        pwd = os.path.normpath(os.getcwd());
-        # 'channelxxx, xxx is the number of the channel'
-        self.channel_filename = [os.path.basename(pwd)]  
-        template_filename = os.path.join(DPT.levels.resolve_level('day', self.channel_filename[0]),'mountains', self.channel_filename[0], 'output', 'templates.hkl')        
-
-        
-        self.data = [np.squeeze(templates)]
         
     def append(self, wf):
         # this function will be called by processDirs to append the values of certain fields
