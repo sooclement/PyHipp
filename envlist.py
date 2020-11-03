@@ -6,7 +6,11 @@ import sys
 
 # set constants
 file_path = "/data/picasso/envlist.hkl"
+<<<<<<< HEAD
 lock_path = "/data/picasso/envlist.khl.lock"
+=======
+lock_path = "/data/picasso/envlist.hkl.lock"
+>>>>>>> 6c0f4d68e7464c9bcafab9a803ef074b9c1ff04a
 time_out_secs = 60
 
 # program modes
@@ -20,6 +24,17 @@ if nargs > 3:
     print('Usage: envlist; envlist env; envlist envprefix nenvs')
     exit
 elif nargs > 2:
+<<<<<<< HEAD
+    pmode = RESET_MODE
+    envprefix = sys.argv[1]
+    nenvs = sys.argv[2]
+elif nargs > 1:
+    pmode = WRITE_MODE
+    env = sys.argv[1]
+else:
+    pmode = READ_MODE
+
+=======
     # creates or re-creates the list of environments
     pmode = RESET_MODE
     # get prefix for environment name
@@ -36,10 +51,15 @@ else:
     pmode = READ_MODE
 
 # creates a lock for the file so it can only be accessed one at a time
+>>>>>>> 6c0f4d68e7464c9bcafab9a803ef074b9c1ff04a
 lock = FileLock(lock_path, timeout=time_out_secs)
 
 with lock:
     if pmode == RESET_MODE:
+<<<<<<< HEAD
+        clist1 = [*range(0,int(nenvs),1)]
+        clist = [envprefix + str(s) for s in clist1]
+=======
         # create a list (named clist) of nevns environments with the 
         # prefix envprefix
         # add code here
@@ -47,16 +67,30 @@ with lock:
         for i in range(int(nenvs)):
             clist.append(envprefix + str(i))
 
+>>>>>>> 6c0f4d68e7464c9bcafab9a803ef074b9c1ff04a
     else:
         # load hickle file
         clist = hickle.load(file_path)
 
         if pmode == WRITE_MODE:
+<<<<<<< HEAD
             # append item to end of list
             clist.append(env)
         else:    
             # pop first item off list
             env = clist.pop(0)
+=======
+            # append env to the clist
+            # add code here
+            clist.append(env)
+            
+        else:
+            # get and remove env from clist
+            # add code here
+            env = clist[0]
+            clist.pop(0)
+            
+>>>>>>> 6c0f4d68e7464c9bcafab9a803ef074b9c1ff04a
             # return env name
             print(env)
 
