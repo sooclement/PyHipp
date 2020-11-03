@@ -127,8 +127,8 @@ class Waveform(DPT.DPObject):
             elif self.current_plot_type == 'Channel' and plot_type == 'Array':  
                 # add code to return number of arrays and the appropriate
                 # array number if the current channel number is i
+                self.current_plot_type = 'Array'      
                 return len(self.array_dict), i
-                self.current_plot_type = 'Array'                
             
         if ax is None:
             ax = plt.gca()
@@ -170,29 +170,7 @@ class Waveform(DPT.DPObject):
                 self.plot_data(currch, ax, plotOpts, isCorner)
                 currch += 1
         
-        return ax
-
-        # plot the mountainsort data according to the current index 'i'
-            # .........................................
-            # ..................code...................
-            # .........................................
-
-
-        ########labels###############
-        if not plotOpts['TitleOff']:  # if TitleOff icon in the right-click menu is clicked
-            # set the title in this format: channelxxx, fill with zeros if the channel number is not three-digit
-            # .........................................
-            # ..................codes..................
-            # .........................................
-            ax.set_title(self.dirs[i][-10:])
-            
-        if not plotOpts['LabelsOff']:  # if LabelsOff icon in the right-click menu is clicked
-            # set the xlabel and ylabel
-            # .........................................
-            # ..................code...................
-            # .........................................
-            ax.set_xlabel('Time (sample unit)')
-            ax.set_ylabel('Voltage (uV)')       
+        return ax     
 
     
     def plot_data(self, i, ax, plotOpts, isCorner):
@@ -202,7 +180,7 @@ class Waveform(DPT.DPObject):
 
 
         if not plotOpts['TitleOff']:
-            ax.set_title(self.dirs[i][-10:])
+            ax.set_title(self.dirs[i])
                 
         if (not plotOpts['LabelsOff']) or isCorner:
             ax.set_xlabel('Time (sample unit)')
